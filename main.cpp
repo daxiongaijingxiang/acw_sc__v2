@@ -1,1 +1,51 @@
+#include <iostream>
+using std::string;
+
+string unsbox(const char data[]) {
+    char _0x4b082b[] = { 0xf, 0x23, 0x1d, 0x18, 0x21, 0x10, 0x1, 0x26, 0xa, 0x9, 0x13, 0x1f, 0x28, 0x1b, 0x16, 0x17, 0x19, 0xd, 0x6, 0xb, 0x27, 0x12, 0x14, 0x8, 0xe, 0x15, 0x20, 0x1a, 0x2, 0x1e, 0x7, 0x4, 0x11, 0x5, 0x3, 0x1c, 0x22, 0x25, 0xc, 0x24 };
+    char _0x4da0dc[40] = { 0 };
+    
+    for (int _0x20a7bf = 0x0; _0x20a7bf < 40; _0x20a7bf++) {
+        char _0x385ee3 = data[_0x20a7bf];
+        for (int _0x217721 = 0x0; _0x217721 < 40; _0x217721++) {
+            if (_0x4b082b[_0x217721] == _0x20a7bf + 0x1) {
+                _0x4da0dc[_0x217721] = _0x385ee3;
+            }
+        }
+    }
+    string _0x12605e(_0x4da0dc,40);
+    return _0x12605e;
+}
+
+string hexXor(string data) {
+    string _0x4e08d8 = "3000176000856006061501533003690027800375";
+    string _0x5a5d3b = "";
+    for (int _0xe89588 = 0x0; _0xe89588 < 40; _0xe89588 += 0x2) {
+        int _0x401af1 = 0;
+        sscanf(data.substr(_0xe89588,  2).c_str(), "%x", &_0x401af1);
+        int _0x105f59 = 0;
+        sscanf(_0x4e08d8.substr(_0xe89588,  2).c_str(), "%x", &_0x105f59);
+        int _0x189e2c = _0x401af1 ^ _0x105f59;
+        std::ostringstream ss;
+        ss << std::hex << _0x189e2c;
+        std::string result = ss.str();
+        if (result.length() == 0x1) {
+            result = "0" + result;
+        }
+        _0x5a5d3b += result;
+    }
+    return _0x5a5d3b;
+
+}
+
+int main(){
+  string arg1 = "5DB6D5D0A996375B100F3C6E5F9C4E6F5F32821E";
+  string _0x23a392 = unsbox(arg1.c_str());
+  string arg2 = hexXor(_0x23a392);
+  string acw_sc__v2 = "acw_sc__v2=" + arg2;
+
+  std::cin.get();
+  return 1;
+}
+
 
